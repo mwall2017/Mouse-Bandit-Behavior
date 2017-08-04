@@ -1,4 +1,5 @@
 function varargout = NewGUI(varargin)
+% Mike added laser stim. probability entry in Parameters
 % NEWGUI MATLAB code for NewGUI.fig
 %      NEWGUI, by itself, creates a new NEWGUI or raises the existing
 %      singleton*.
@@ -323,6 +324,29 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
+function laserstimprob_Callback(hObject, eventdata, handles)
+% hObject    handle to laserstimprob (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of laserstimprob as text
+%        str2double(get(hObject,'String')) returns contents of laserstimprob as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function laserstimprob_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to laserstimprob (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
 % --- Executes on button press in runExperiment.
 function runExperiment_Callback(hObject, eventdata, handles)
 % hObject    handle to runExperiment (see GCBO)
@@ -344,6 +368,7 @@ p.rewardDurationLeft = str2double(get(handles.rewardDurationLeft, 'String'));
 p.minInterTrialInterval = str2double(get(handles.minInterTrialInterval, 'String'));
 p.blockRangeMin = str2double(get(handles.blockRangeMin, 'String'));
 p.blockRangeMax = str2double(get(handles.blockRangeMax, 'String'));
+p.laserstimprob = str2double(get(handles.laserstimprob, 'String'));
 %creates a global info struct to store the mouse's name and the folder's
 %path as inputted by the user. sets the running field to true and the
 %save field to NaN
@@ -373,6 +398,7 @@ if ready
     set(handles.minInterTrialInterval, 'enable', 'off');
     set(handles.blockRangeMin, 'enable', 'off');
     set(handles.blockRangeMax, 'enable', 'off');
+    set(handles.laserstimprob, 'enable', 'off');
     set(handles.mouseName, 'enable', 'off');
     set(handles.folderPath, 'enable', 'off');
     set(handles.chooseFolder, 'enable', 'off');
@@ -466,6 +492,7 @@ set(handles.rewardDurationLeft, 'enable', 'on');
 set(handles.minInterTrialInterval, 'enable', 'on');
 set(handles.blockRangeMin, 'enable', 'on');
 set(handles.blockRangeMax, 'enable', 'on');
+set(handles.laserstimprob, 'enable', 'on');
 set(handles.mouseName, 'enable', 'on');
 set(handles.folderPath, 'enable', 'on');
 set(handles.chooseFolder, 'enable', 'on');
@@ -479,8 +506,9 @@ set(handles.rightRewardProb, 'String','0.8');
 set(handles.rewardDurationRight, 'String', '40');
 set(handles.rewardDurationLeft, 'String', '45');
 set(handles.minInterTrialInterval, 'String', '1');
-set(handles.blockRangeMin, 'String', '50');
+set(handles.blockRangeMin, 'String', '60');
 set(handles.blockRangeMax, 'String', '50');
+set(handles.laserstimprob, 'String', '0');
 set(handles.mouseName,'String','');
 set(handles.folderPath,'String','Default Folder Path');
 set(handles.save,'Value',1);
