@@ -331,7 +331,7 @@ if p.centerPokeTrigger % if we're in centerPokeTrigger mode
         activateSidePortsForDuration(activateLeft, activateRight, p.centerPokeRewardWindow);
         
         %add logic for laser stimulation
-        if rand <= 0.1  % <--- IE 10% of trials will be 'opto trials'. This should likely
+        if rand <= p.laserstimprob  % <--- IE 10% of trials will be 'opto trials'. This should likely
                       %become a paramter at some point. 
            activateLaserStim();
         else
